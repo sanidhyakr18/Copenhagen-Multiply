@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/inter_bold"
-        android:text="Consent Form"
+        android:text="@string/consent_form"
         android:textColor="@color/primaryBlack"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

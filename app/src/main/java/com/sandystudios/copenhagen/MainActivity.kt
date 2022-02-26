@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.btn_start)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(NAME, name)
                 intent.putExtra(AGE, age)
                 startActivity(intent)
-                finish()
+                checkBox.isChecked = false
             }
         }
     }
