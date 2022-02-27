@@ -37,9 +37,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +50,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_regular"
             android:text="@string/hello_world"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:textColor="@color/primaryBlack"
             android:textSize="14sp" />
     </ScrollView>

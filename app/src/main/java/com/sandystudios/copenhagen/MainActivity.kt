@@ -3,6 +3,8 @@ package com.sandystudios.copenhagen
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
@@ -43,10 +45,22 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.btn_start)
     }
 
+    companion object {
+        lateinit var h: Handler
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        h = object : Handler() {
+            override fun handleMessage(msg: Message) {
+                super.handleMessage(msg)
+                when (msg.what) {
+                    0 -> finish()
+                }
+            }
+        }
 
         val spannable = SpannableString("Decisive.")
         spannable.setSpan(
