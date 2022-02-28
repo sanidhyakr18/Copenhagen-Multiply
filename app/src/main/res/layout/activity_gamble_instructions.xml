@@ -4,29 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConsentActivity">
+    tools:context=".GambleInstructionsActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_round_arrow_back_ios_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_consent_form"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_consent_form"
-        app:tint="@color/primaryBlue" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_consent_form"
+        <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_instructions_gamble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/inter_bold"
-        android:text="@string/consent_form"
+        android:text="@string/instructions"
         android:textColor="@color/primaryBlack"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,19 +26,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_consent_form">
+        app:layout_constraintTop_toBottomOf="@+id/tv_instructions_gamble">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_consent_matter"
+            android:id="@+id/tv_gamble_matter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_regular"
             android:text="@string/hello_world"
+            android:textColor="@color/primaryBlack"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:paddingBottom="24dp"
-            android:textColor="@color/primaryBlack"
+            android:paddingBottom="124dp"
             android:textSize="14sp" />
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_okay_gamble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/inter_medium"
+        android:padding="16dp"
+        android:text="@string/okay_i_got_it"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

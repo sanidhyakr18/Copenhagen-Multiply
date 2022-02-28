@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CopenhagenMultiply">
         <activity
+            android:name=".GambleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GambleInstructionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExperimentActivity"
             android:exported="false" />
         <activity

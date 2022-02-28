@@ -11,4 +11,8 @@
     <string name="instructions">Instructions</string>
     <string name="consent_form">Consent Form</string>
     <string name="okay_i_got_it">Okay, I got it!</string>
+    <string name="initial_amount">Initial Amount:</string>
+    <string name="new_amount">New Amount</string>
+    <string name="symbol">Symbol</string>
+    <string name="finish">Finish</string>
 </resources>
