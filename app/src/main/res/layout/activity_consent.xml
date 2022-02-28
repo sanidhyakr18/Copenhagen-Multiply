@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
     tools:context=".ConsentActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -46,11 +47,11 @@
             android:id="@+id/tv_consent_matter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/hello_world"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:fontFamily="@font/inter_regular"
             android:paddingBottom="24dp"
+            android:text="@string/hello_world"
             android:textColor="@color/primaryBlack"
             android:textSize="14sp" />
     </ScrollView>

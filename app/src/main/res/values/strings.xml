@@ -14,5 +14,5 @@
     <string name="initial_amount">Initial Amount:</string>
     <string name="new_amount">New Amount</string>
     <string name="symbol">Symbol</string>
-    <string name="finish">Finish</string>
+    <string name="finish">FINISH</string>
 </resources>

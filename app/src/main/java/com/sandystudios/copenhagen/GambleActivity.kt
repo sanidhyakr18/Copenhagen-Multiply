@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sandystudios.copenhagen.model.User
@@ -80,7 +81,9 @@ class GambleActivity : AppCompatActivity() {
 
                 database.child(uid).setValue(user).addOnSuccessListener {
                     Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show()
-
+                    val intent = Intent(this, ThankYouActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }.addOnFailureListener {
                     Toast.makeText(
                         this,
@@ -91,5 +94,18 @@ class GambleActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Exit")
+            .setMessage("Are you sure you want to exit?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { _, _ ->
+                MainActivity.h.sendEmptyMessage(0);
+                this@GambleActivity.finish()
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 }

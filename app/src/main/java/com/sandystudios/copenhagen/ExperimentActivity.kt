@@ -106,6 +106,7 @@ class ExperimentActivity : AppCompatActivity() {
                 }
 
                 if (num == 9) {
+                    tvHeading.text = "Final Amount"
                     btnNext.text = getString(R.string.finish)
                 }
             }

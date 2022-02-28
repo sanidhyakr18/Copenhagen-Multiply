@@ -107,7 +107,7 @@ class GambleInstructionsActivity : AppCompatActivity() {
             .setCancelable(false)
             .setPositiveButton("Yes") { _, _ ->
                 MainActivity.h.sendEmptyMessage(0)
-                this.finish()
+                this@GambleInstructionsActivity.finish()
             }
             .setNegativeButton("No", null)
             .show()
