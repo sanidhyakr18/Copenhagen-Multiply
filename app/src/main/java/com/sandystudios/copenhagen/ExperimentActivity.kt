@@ -80,6 +80,7 @@ class ExperimentActivity : AppCompatActivity() {
                 val intent = Intent(this, GambleInstructionsActivity::class.java)
                 intent.putExtra(NAME, name)
                 intent.putExtra(AGE, age)
+                intent.putExtra(FINAL_SCORE, amount)
                 startActivity(intent)
                 finish()
             } else {
@@ -98,10 +99,10 @@ class ExperimentActivity : AppCompatActivity() {
                 if (isImage && num < 9) {
                     ivImage.setImageResource(mResources[num])
                     amount *= hashMap[mResources[num]]!!
-                    Log.d(
-                        TAG,
-                        "${mResources[num]} - ${hashMap[mResources[num]]} - ${amount.toInt()}"
-                    )
+//                    Log.d(
+//                        TAG,
+//                        "${mResources[num]} - ${hashMap[mResources[num]]} - ${amount.toInt()}"
+//                    )
                 }
 
                 if (num == 9) {

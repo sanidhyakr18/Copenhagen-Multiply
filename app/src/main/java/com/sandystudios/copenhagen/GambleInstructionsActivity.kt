@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.properties.Delegates
 
 class GambleInstructionsActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class GambleInstructionsActivity : AppCompatActivity() {
 
     private lateinit var name: String
     private lateinit var age: String
+    private var finalScore = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class GambleInstructionsActivity : AppCompatActivity() {
         try {
             name = intent.getStringExtra(NAME)!!
             age = intent.getStringExtra(AGE)!!
+            finalScore = intent.getFloatExtra(FINAL_SCORE, 0F)
         } catch (e: Exception) {
             Toast.makeText(this, "Number not found, Try Again!", Toast.LENGTH_SHORT).show()
         }
@@ -36,6 +39,7 @@ class GambleInstructionsActivity : AppCompatActivity() {
             val intent = Intent(this, GambleActivity::class.java)
             intent.putExtra(NAME, name)
             intent.putExtra(AGE, age)
+            intent.putExtra(FINAL_SCORE, finalScore)
             startActivity(intent)
             finish()
         }

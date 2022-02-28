@@ -55,7 +55,7 @@
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/inter_medium"
         android:padding="16dp"
-        android:text="Next"
+        android:text="NEXT"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="8dp"
