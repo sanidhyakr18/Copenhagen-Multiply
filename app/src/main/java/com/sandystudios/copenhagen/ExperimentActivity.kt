@@ -33,6 +33,7 @@ class ExperimentActivity : AppCompatActivity() {
 
     private var isImage = false
     private var num = 0
+    private var repeat = 0
     private var amount = 1000F
 
     private var mResources = intArrayOf(
@@ -89,7 +90,11 @@ class ExperimentActivity : AppCompatActivity() {
                 if (!isImage) {
                     tvHeading.text = getString(R.string.new_amount)
                     tvAmount.text = amount.toInt().toString()
-                    num++;
+                    repeat++
+                    if (repeat == 3) {
+                        repeat = 0
+                        num++
+                    }
                 } else {
                     tvHeading.text = getString(R.string.symbol)
                 }

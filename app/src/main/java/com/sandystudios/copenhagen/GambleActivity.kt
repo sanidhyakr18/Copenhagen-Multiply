@@ -79,18 +79,19 @@ class GambleActivity : AppCompatActivity() {
                     gambleScore.toInt()
                 )
 
-                database.child(uid).setValue(user).addOnSuccessListener {
-                    Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, ThankYouActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }.addOnFailureListener {
-                    Toast.makeText(
-                        this,
-                        "Please check your Internet Connection and try again.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                database.child(uid).setValue(user)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, ThankYouActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }.addOnFailureListener {
+                        Toast.makeText(
+                            this,
+                            "Please check your Internet Connection and try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
             }
         }
 
