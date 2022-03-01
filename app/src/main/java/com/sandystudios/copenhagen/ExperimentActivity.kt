@@ -125,7 +125,7 @@ class ExperimentActivity : AppCompatActivity() {
             .setMessage("Are you sure you want to exit?")
             .setCancelable(false)
             .setPositiveButton("Yes") { _, _ ->
-                MainActivity.h.sendEmptyMessage(0);
+                MainActivity.h.sendEmptyMessage(0)
                 this@ExperimentActivity.finish()
             }
             .setNegativeButton("No", null)

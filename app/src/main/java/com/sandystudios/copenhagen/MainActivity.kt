@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 const val NAME = "name"
 const val AGE = "age"
 const val FINAL_SCORE = "final score"
-//const val CHOICE_OF_GAMBLE = "choice of gamble"
-//const val GAMBLE_SCORE = "gamble score"
 
 class MainActivity : AppCompatActivity() {
 
@@ -90,8 +88,10 @@ class MainActivity : AppCompatActivity() {
         val name = etName.text.toString()
         val age = etAge.text.toString()
         when {
-            name.isEmpty() -> Toast.makeText(this, "Name can not be empty!", Toast.LENGTH_SHORT).show()
-            age.isEmpty() -> Toast.makeText(this, "Age can not be empty!", Toast.LENGTH_SHORT).show()
+            name.isEmpty() -> Toast.makeText(this, "Name can not be empty!", Toast.LENGTH_SHORT)
+                .show()
+            age.isEmpty() -> Toast.makeText(this, "Age can not be empty!", Toast.LENGTH_SHORT)
+                .show()
             else -> {
                 btnStart.isEnabled = false
                 val intent = Intent(this, InstructionsActivity::class.java)

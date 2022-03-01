@@ -1,19 +1,20 @@
 package com.sandystudios.copenhagen
 
-import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sandystudios.copenhagen.model.User
 import java.util.*
+
 
 class GambleActivity : AppCompatActivity() {
 
@@ -46,10 +47,21 @@ class GambleActivity : AppCompatActivity() {
         }
 
         btnSubmit.setOnClickListener {
+            btnSubmit.isEnabled = false
             val radioButtonID = radioGroup.checkedRadioButtonId
             if (radioButtonID == -1) {
                 Toast.makeText(this, "No gamble Selected!", Toast.LENGTH_SHORT).show()
+                btnSubmit.isEnabled = true
             } else {
+                if (!isNetworkStatusAvailable(applicationContext)) {
+                    Toast.makeText(
+                        this,
+                        "Please check your Internet Connection and try again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    btnSubmit.isEnabled = true
+                }
+
                 val checkRadioButton = findViewById<RadioButton>(radioButtonID)
                 choiceOfGamble = if (checkRadioButton.text == "Gamble (a)") "a" else "b"
                 if (choiceOfGamble == "a") {
@@ -91,10 +103,21 @@ class GambleActivity : AppCompatActivity() {
                             "Please check your Internet Connection and try again.",
                             Toast.LENGTH_SHORT
                         ).show()
+                        btnSubmit.isEnabled = true
                     }
             }
         }
 
+    }
+
+    fun isNetworkStatusAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val netInfos = connectivityManager.activeNetworkInfo
+            if (netInfos != null) if (netInfos.isConnected) return true
+        }
+        return false
     }
 
     override fun onBackPressed() {
