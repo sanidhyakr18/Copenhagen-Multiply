@@ -1,8 +1,10 @@
 package com.sandystudios.copenhagen
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -38,6 +40,7 @@ class ExperimentActivity : AppCompatActivity() {
     private var isImage = false
     private var num = 0
     private var repeat = 0
+    private var shuffle = 4
     private var amount = 1000F
 
     private var mResources = intArrayOf(
@@ -84,53 +87,58 @@ class ExperimentActivity : AppCompatActivity() {
 
         btnNext.isEnabled = false
 
-//        addDelay()
         progressBar()
 
         btnNext.setOnClickListener {
             btnNext.isEnabled = false
             if (num == 9) {
-                val intent = Intent(this, GambleInstructionsActivity::class.java)
-                intent.putExtra(NAME, name)
-                intent.putExtra(AGE, age)
-                intent.putExtra(FINAL_SCORE, amount)
-                startActivity(intent)
-                finish()
-            } else {
-                isImage = !isImage
-
-                if (!isImage) {
-                    tvHeading.text = getString(R.string.new_amount)
-                    tvAmount.text = amount.toInt().toString()
-                    repeat++
-                    if (repeat == 3) {
-                        repeat = 0
-                        num++
-                    }
+                if (shuffle == 0) {
+                    val intent = Intent(this, GambleInstructionsActivity::class.java)
+                    intent.putExtra(NAME, name)
+                    intent.putExtra(AGE, age)
+                    intent.putExtra(FINAL_SCORE, amount)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    tvHeading.text = getString(R.string.symbol)
+                    num = 0
+                    shuffle--
+                    mResources.shuffle()
+                    btnAction()
                 }
-
-                tvAmount.isVisible = !isImage
-                ivImage.isVisible = isImage
-                if (isImage && num < 9) {
-                    ivImage.setImageResource(mResources[num])
-                    amount *= hashMap[mResources[num]]!!
-//                    Log.d(
-//                        TAG,
-//                        "${mResources[num]} - ${hashMap[mResources[num]]} - ${amount.toInt()}"
-//                    )
-                }
-
-                if (num == 9) {
-                    tvHeading.text = "Final Amount"
-                    btnNext.text = getString(R.string.finish)
-                }
-//                addDelay()
-                progressBar()
+            } else {
+                btnAction()
             }
         }
+    }
 
+    private fun btnAction() {
+        isImage = !isImage
+
+        if (!isImage) {
+            tvHeading.text = getString(R.string.new_amount)
+            tvAmount.text = amount.toInt().toString()
+            repeat++
+            if (repeat == 3) {
+                repeat = 0
+                num++
+            }
+        } else {
+            tvHeading.text = getString(R.string.symbol)
+        }
+
+        tvAmount.isVisible = !isImage
+        ivImage.isVisible = isImage
+        if (isImage && num < 9) {
+            ivImage.setImageResource(mResources[num])
+            amount *= hashMap[mResources[num]]!!
+//            Log.d(TAG, "${hashMap[mResources[num]]} - ${amount.toInt()}")
+        }
+
+        if (num == 9 && shuffle == 0) {
+            tvHeading.text = "Final Amount"
+            btnNext.text = getString(R.string.finish)
+        }
+        progressBar()
     }
 
     private fun progressBar() {
