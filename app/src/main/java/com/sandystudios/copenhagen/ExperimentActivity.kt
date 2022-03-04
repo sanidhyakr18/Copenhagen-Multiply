@@ -1,10 +1,10 @@
 package com.sandystudios.copenhagen
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +31,10 @@ class ExperimentActivity : AppCompatActivity() {
         findViewById(R.id.btn_next)
     }
 
+    private val progressBar: ProgressBar by lazy {
+        findViewById(R.id.progressBar)
+    }
+
     private var isImage = false
     private var num = 0
     private var repeat = 0
@@ -52,6 +56,8 @@ class ExperimentActivity : AppCompatActivity() {
 
     private lateinit var name: String
     private lateinit var age: String
+
+    private var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +82,13 @@ class ExperimentActivity : AppCompatActivity() {
 
         mResources.shuffle()
 
+        btnNext.isEnabled = false
+
+//        addDelay()
+        progressBar()
+
         btnNext.setOnClickListener {
+            btnNext.isEnabled = false
             if (num == 9) {
                 val intent = Intent(this, GambleInstructionsActivity::class.java)
                 intent.putExtra(NAME, name)
@@ -114,9 +126,30 @@ class ExperimentActivity : AppCompatActivity() {
                     tvHeading.text = "Final Amount"
                     btnNext.text = getString(R.string.finish)
                 }
+//                addDelay()
+                progressBar()
             }
         }
 
+    }
+
+    private fun progressBar() {
+        i = 0
+        progressBar.progress = i
+        val mCountDownTimer = object : CountDownTimer(5000, 10) {
+            override fun onTick(millisUntilFinished: Long) {
+//                Log.v("Log_tag", "Tick of Progress$i$millisUntilFinished")
+                i++
+                progressBar.progress = i * 100 / (5000 / 10)
+            }
+
+            override fun onFinish() {
+                i++
+                progressBar.progress = 100
+                btnNext.isEnabled = true
+            }
+        }
+        mCountDownTimer.start()
     }
 
     override fun onBackPressed() {
