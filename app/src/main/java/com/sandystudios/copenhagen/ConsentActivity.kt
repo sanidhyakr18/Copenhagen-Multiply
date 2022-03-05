@@ -1,6 +1,8 @@
 package com.sandystudios.copenhagen
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,74 +25,117 @@ class ConsentActivity : AppCompatActivity() {
         btnBack.setOnClickListener {
             finish()
         }
-        // TODO: ask for consent matter
-        tvConsentMatter.text = """
-            Terms and Conditions for Company Name
-            
-            Introduction
-            
-            These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, Webiste Name accessible at Website.com.
 
-            These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.
-
-            Minors or people below 18 years old are not allowed to use this Website.
-
-            Intellectual Property Rights
-            
-            Other than the content you own, under these Terms, Company Name and/or its licensors own all the intellectual property rights and materials contained in this Website.
-
-            You are granted limited license only for purposes of viewing the material contained on this Website.
-
-            Restrictions
-            
-            You are specifically restricted from all of the following:
-
-            publishing any Website material in any other media;
-            selling, sublicensing and/or otherwise commercializing any Website material;
-            publicly performing and/or showing any Website material;
-            using this Website in any way that is or may be damaging to this Website;
-            using this Website in any way that impacts user access to this Website;
-            using this Website contrary to applicable laws and regulations, or in any way may cause harm to the Website, or to any person or business entity;
-            engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website;
-            using this Website to engage in any advertising or marketing.
-            Certain areas of this Website are restricted from being access by you and Company Name may further restrict access by you to any areas of this Website, at any time, in absolute discretion. Any user ID and password you may have for this Website are confidential and you must maintain confidentiality as well.
-
-            Your Content
-            
-            In these Website Standard Terms and Conditions, “Your Content” shall mean any audio, video text, images or other material you choose to display on this Website. By displaying Your Content, you grant Company Name a non-exclusive, worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.
-
-            Your Content must be your own and must not be invading any third-party's rights. Company Name reserves the right to remove any of Your Content from this Website at any time without notice.
-
-            No warranties
-            This Website is provided “as is,” with all faults, and Company Name express no representations or warranties, of any kind related to this Website or the materials contained on this Website. Also, nothing contained on this Website shall be interpreted as advising you.
-
-            Limitation of liability
-            
-            In no event shall Company Name, nor any of its officers, directors and employees, shall be held liable for anything arising out of or in any way connected with your use of this Website whether such liability is under contract.  Company Name, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Website.
-
-            Indemnification
-            
-            You hereby indemnify to the fullest extent Company Name from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.
-
-            Severability
-            
-            If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.
-
-            Variation of Terms
-            
-            Company Name is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected to review these Terms on a regular basis.
-
-            Assignment
-            
-            The Company Name is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these Terms.
-
-            Entire Agreement
-            
-            These Terms constitute the entire agreement between Company Name and you in relation to your use of this Website, and supersede all prior agreements and understandings.
-
-            Governing Law & Jurisdiction
-            
-            These Terms will be governed by and interpreted in accordance with the laws of the State of Country, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Country for the resolution of any disputes.
-            """.trimIndent()
+        tvConsentMatter.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(
+                "<p>Greetings! \uD83C\uDF3B</p>\n" +
+                        "<p><br>\n" +
+                        "    We are a group of students, pursuing MA in Psychology from the University of Delhi. As a part of our academic\n" +
+                        "    research project, we are conducting an experiment to examine decision making under uncertainty and the role of\n" +
+                        "    personality in it.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    The experiment consists of two phases – <b>passive and active phases.</b> During the <b> passive (training\n" +
+                        "        phase), </b> you are required to attend to the relationship between your score and the image that follows\n" +
+                        "    your score. <b>Active phase </b> will follow at the end of the passive phase. During active phase, you are\n" +
+                        "    required to\n" +
+                        "    use what you learned of\n" +
+                        "    the relationship between your score and different images that follow it. You will be given a choice between two\n" +
+                        "    gambles and out of those two choices you will be required to choose the option that you think will maximize your\n" +
+                        "    score.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br><b> As a participant, the overall aim is to maximize your score. </b></p>\n" +
+                        "<p><br><b> Out of the top scorers, three will be given cash prizes as follows:</b></p>\n" +
+                        "<p><b> 1st prize will be Rs 1500</b></p>\n" +
+                        "<p><b> 2nd prize will be Rs 1000 </b></p>\n" +
+                        "<p><b> 3rd prize will be Rs 500 </b></p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    We request you to participate as honestly as possible.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Please note that confidentiality will be maintained at all times and your responses will be used only for the\n" +
+                        "    purpose of this research. Your participation in this research is completely voluntary. You can choose to\n" +
+                        "    withdraw from the study at any time by simply closing the app.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    We highly value your participation in this study.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Thank you for your time.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Name of the researchers: <b>Faizy Rahman, Preeti Mehra, Sumit Shandilya, Mehak Gupta, Prerna Monica Tete,\n" +
+                        "        Harshita and Purvi khurana</b>\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    For any queries or details you can reach out to us at:\n" +
+                        "    <br><u>faizy.rahman1@gmail.com</u>\n" +
+                        "    <br><u>harshitabarua99@gmail.com</u>\n" +
+                        "</p>", Html.FROM_HTML_MODE_COMPACT
+            );
+        } else {
+            Html.fromHtml(
+                "<p>Greetings! \uD83C\uDF3B</p>\n" +
+                        "<p><br>\n" +
+                        "    We are a group of students, pursuing MA in Psychology from the University of Delhi. As a part of our academic\n" +
+                        "    research project, we are conducting an experiment to examine decision making under uncertainty and the role of\n" +
+                        "    personality in it.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    The experiment consists of two phases – <b>passive and active phases.</b> During the <b> passive (training\n" +
+                        "        phase), </b> you are required to attend to the relationship between your score and the image that follows\n" +
+                        "    your score. <b>Active phase </b> will follow at the end of the passive phase. During active phase, you are\n" +
+                        "    required to\n" +
+                        "    use what you learned of\n" +
+                        "    the relationship between your score and different images that follow it. You will be given a choice between two\n" +
+                        "    gambles and out of those two choices you will be required to choose the option that you think will maximize your\n" +
+                        "    score.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br><b> As a participant, the overall aim is to maximize your score. </b></p>\n" +
+                        "<p><br><b> Out of the top scorers, three will be given cash prizes as follows:</b></p>\n" +
+                        "<p><b> 1st prize will be Rs 1500</b></p>\n" +
+                        "<p><b> 2nd prize will be Rs 1000 </b></p>\n" +
+                        "<p><b> 3rd prize will be Rs 500 </b></p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    We request you to participate as honestly as possible.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Please note that confidentiality will be maintained at all times and your responses will be used only for the\n" +
+                        "    purpose of this research. Your participation in this research is completely voluntary. You can choose to\n" +
+                        "    withdraw from the study at any time by simply closing the app.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    We highly value your participation in this study.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Thank you for your time.\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    Name of the researchers: <b>Faizy Rahman, Preeti Mehra, Sumit Shandilya, Mehak Gupta, Prerna Monica Tete,\n" +
+                        "        Harshita and Purvi khurana</b>\n" +
+                        "</p>\n" +
+                        "\n" +
+                        "<p><br>\n" +
+                        "    For any queries or details you can reach out to us at:\n" +
+                        "    <br><u>faizy.rahman1@gmail.com</u>\n" +
+                        "    <br><u>harshitabarua99@gmail.com</u>\n" +
+                        "</p>"
+            );
+        }
     }
 }
