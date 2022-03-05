@@ -41,7 +41,7 @@ class ExperimentActivity : AppCompatActivity() {
     private var isImage = false
     private var num = 0
     private var repeat = 0
-    private var shuffle = 0 // TODO: 4
+    private var shuffle = 4
     private var amount = 1000F
 
     private var mResources = intArrayOf(
@@ -144,11 +144,9 @@ class ExperimentActivity : AppCompatActivity() {
         }
 
         if (isImage) {
-            // TODO: 5000
-            progressBar(1000)
+            progressBar(5000)
         } else {
-            // TODO: 2000
-            progressBar(1000)
+            progressBar(2000)
         }
     }
 
@@ -177,11 +175,9 @@ class ExperimentActivity : AppCompatActivity() {
         }
 
         if (isImage) {
-            // TODO: 5000
-            progressBar(1000)
+            progressBar(5000)
         } else {
-            // TODO: 2000
-            progressBar(1000)
+            progressBar(2000)
         }
     }
 
