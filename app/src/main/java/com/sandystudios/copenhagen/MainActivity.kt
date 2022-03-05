@@ -1,7 +1,9 @@
 package com.sandystudios.copenhagen
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -13,6 +15,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
@@ -44,6 +47,10 @@ class MainActivity : AppCompatActivity() {
 
     private val btnStart: Button by lazy {
         findViewById(R.id.btn_start)
+    }
+
+    private val btnPrize: ImageButton by lazy {
+        findViewById(R.id.btn_prize)
     }
 
     companion object {
@@ -82,6 +89,24 @@ class MainActivity : AppCompatActivity() {
         btnStart.setOnClickListener {
             completeSetup()
         }
+
+        btnPrize.setOnClickListener {
+            showAlertDialog()
+        }
+    }
+
+    private fun showAlertDialog() {
+        val customLayout: View = layoutInflater.inflate(R.layout.custom_dialogue, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setView(customLayout)
+
+        val alert = alertDialog.create()
+        alert.setCanceledOnTouchOutside(true)
+//        alert.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        this.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        this.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        alert.show()
     }
 
     private fun completeSetup() {
