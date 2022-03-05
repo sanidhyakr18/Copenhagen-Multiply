@@ -7,7 +7,7 @@
     android:background="@color/backgroundWhite"
     tools:context=".ConsentActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageButton
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_consent_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_consent_form"
-        app:tint="@color/primaryBlue" />
+        app:tint="@color/primaryBlue"
+        android:background="@drawable/round_corner"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:contentDescription="Go Back" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_consent_form"

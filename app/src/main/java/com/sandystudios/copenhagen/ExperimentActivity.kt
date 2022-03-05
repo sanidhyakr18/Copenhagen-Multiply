@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -40,7 +41,7 @@ class ExperimentActivity : AppCompatActivity() {
     private var isImage = false
     private var num = 0
     private var repeat = 0
-    private var shuffle = 4
+    private var shuffle = 0 // TODO: 4
     private var amount = 1000F
 
     private var mResources = intArrayOf(
@@ -61,6 +62,8 @@ class ExperimentActivity : AppCompatActivity() {
     private lateinit var age: String
 
     private var i = 0
+
+    private var finalBtnPress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,18 +90,23 @@ class ExperimentActivity : AppCompatActivity() {
 
         btnNext.isEnabled = false
 
-        progressBar()
+        progressBar(2000)
 
         btnNext.setOnClickListener {
             btnNext.isEnabled = false
             if (num == 9) {
                 if (shuffle == 0) {
-                    val intent = Intent(this, GambleInstructionsActivity::class.java)
-                    intent.putExtra(NAME, name)
-                    intent.putExtra(AGE, age)
-                    intent.putExtra(FINAL_SCORE, amount)
-                    startActivity(intent)
-                    finish()
+                    if (!finalBtnPress) {
+                        finalBtnPress = true
+                        finalBtnAction()
+                    } else {
+                        val intent = Intent(this, GambleInstructionsActivity::class.java)
+                        intent.putExtra(NAME, name)
+                        intent.putExtra(AGE, age)
+                        intent.putExtra(FINAL_SCORE, amount)
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     num = 0
                     shuffle--
@@ -108,6 +116,39 @@ class ExperimentActivity : AppCompatActivity() {
             } else {
                 btnAction()
             }
+        }
+    }
+
+    private fun finalBtnAction() {
+        isImage = !isImage
+
+        if (!isImage) {
+            tvHeading.text = getString(R.string.new_amount)
+            tvAmount.text = amount.toInt().toString()
+        } else {
+            tvHeading.text = getString(R.string.symbol)
+        }
+
+        tvAmount.isVisible = !isImage
+        ivImage.isVisible = isImage
+        btnNext.visibility = if (isImage) View.INVISIBLE else View.VISIBLE
+
+        if (isImage) {
+            mResources.shuffle()
+            ivImage.setImageResource(mResources[0])
+            amount *= hashMap[mResources[0]]!!
+            Log.d(TAG, "${hashMap[mResources[0]]} - ${amount.toInt()}")
+        } else {
+            tvHeading.text = "Final Amount"
+            btnNext.text = getString(R.string.finish)
+        }
+
+        if (isImage) {
+            // TODO: 5000
+            progressBar(1000)
+        } else {
+            // TODO: 2000
+            progressBar(1000)
         }
     }
 
@@ -128,33 +169,44 @@ class ExperimentActivity : AppCompatActivity() {
 
         tvAmount.isVisible = !isImage
         ivImage.isVisible = isImage
+        btnNext.visibility = if (isImage) View.INVISIBLE else View.VISIBLE
         if (isImage && num < 9) {
             ivImage.setImageResource(mResources[num])
             amount *= hashMap[mResources[num]]!!
-//            Log.d(TAG, "${hashMap[mResources[num]]} - ${amount.toInt()}")
+            Log.d(TAG, "${hashMap[mResources[num]]} - ${amount.toInt()}")
         }
 
-        if (num == 9 && shuffle == 0) {
-            tvHeading.text = "Final Amount"
-            btnNext.text = getString(R.string.finish)
+        if (isImage) {
+            // TODO: 5000
+            progressBar(1000)
+        } else {
+            // TODO: 2000
+            progressBar(1000)
         }
-        progressBar()
     }
 
-    private fun progressBar() {
+    private fun progressBar(millisCountDown: Long) {
         i = 0
         progressBar.progress = i
-        val mCountDownTimer = object : CountDownTimer(5000, 10) {
+        val mCountDownTimer = object : CountDownTimer(millisCountDown, 10) {
             override fun onTick(millisUntilFinished: Long) {
 //                Log.v("Log_tag", "Tick of Progress$i$millisUntilFinished")
                 i++
-                progressBar.progress = i * 100 / (5000 / 10)
+                progressBar.progress = (i * 100 / (millisCountDown / 10)).toInt()
             }
 
             override fun onFinish() {
                 i++
                 progressBar.progress = 100
-                btnNext.isEnabled = true
+                if (isImage) {
+                    if (finalBtnPress) {
+                        finalBtnAction()
+                    } else {
+                        btnAction()
+                    }
+                } else {
+                    btnNext.isEnabled = true
+                }
             }
         }
         mCountDownTimer.start()

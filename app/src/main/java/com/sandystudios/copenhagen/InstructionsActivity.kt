@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.imageview.ShapeableImageView
@@ -16,7 +17,7 @@ class InstructionsActivity : AppCompatActivity() {
         findViewById(R.id.tv_list_of_instructions)
     }
 
-    private val btnBackHome: ShapeableImageView by lazy {
+    private val btnBackHome: ImageButton by lazy {
         findViewById(R.id.btn_back_home)
     }
 

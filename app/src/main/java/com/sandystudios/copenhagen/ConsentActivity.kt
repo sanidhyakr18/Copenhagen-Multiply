@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.imageview.ShapeableImageView
@@ -14,7 +15,7 @@ class ConsentActivity : AppCompatActivity() {
         findViewById(R.id.tv_consent_matter)
     }
 
-    private val btnBack: ShapeableImageView by lazy {
+    private val btnBack: ImageButton by lazy {
         findViewById(R.id.btn_back)
     }
 
