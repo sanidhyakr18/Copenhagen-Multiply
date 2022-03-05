@@ -6,5 +6,6 @@ data class User(
     val age: Int,
     val score: Int,
     val gambleChoice: String,
-    val gambleScore: Int
+    val gambleScore: Int,
+    val dateAndTime: String
 )

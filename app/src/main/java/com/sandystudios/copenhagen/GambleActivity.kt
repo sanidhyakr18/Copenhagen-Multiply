@@ -13,6 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sandystudios.copenhagen.model.User
+import com.sandystudios.copenhagen.utils.getDateAndTime
 import java.util.*
 
 
@@ -88,7 +89,8 @@ class GambleActivity : AppCompatActivity() {
                     age.toInt(),
                     finalScore.toInt(),
                     choiceOfGamble,
-                    gambleScore.toInt()
+                    gambleScore.toInt(),
+                    getDateAndTime()
                 )
 
                 database.child(uid).setValue(user)
